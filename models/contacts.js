@@ -48,10 +48,11 @@ const updateContact = async (id, body) => {
   if (index === -1) {
     return null;
   }
-  contacts[index] = { id, ...body };
+  contacts[index] = { ...contacts[index], ...body };
   await updateContacts(contacts);
   return contacts[index];
 };
+
 
 module.exports = {
   listContacts,

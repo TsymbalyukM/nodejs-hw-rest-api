@@ -4,6 +4,7 @@ const { validateBody } = require("../../decorators");
 const schemas = require("../../schemas/contacts-schemas");
 const router = express.Router();
 const contactAddValidate = validateBody(schemas.contactAddSchema);
+const contactUpdateValidate = validateBody(schemas.contactUpdateSchema);
 
 router.get("/", contactsController.getAllContacts);
 
@@ -13,6 +14,6 @@ router.post("/", contactAddValidate, contactsController.addContact);
 
 router.delete("/:id", contactsController.removeContact);
 
-router.put("/:id", contactAddValidate, contactsController.updateContact);
+router.put("/:id", contactUpdateValidate, contactsController.updateContact);
 
 module.exports = router;
