@@ -20,7 +20,14 @@ const contactUpdateSchema = Joi.object({
   .min(1)
   .max(3);
 
+const contactUpdateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().default(false).required().messages({
+    "any.required": `missing required 'favorite' field`,
+  }),
+});
+
 module.exports = {
   contactAddSchema,
-  contactUpdateSchema
+  contactUpdateSchema,
+  contactUpdateFavoriteSchema,
 };
