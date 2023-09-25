@@ -4,12 +4,14 @@ const contactsController = require("../../controllers/contacts-controller");
 const router = express.Router();
 const { validateBody } = require("../../decorators");
 const schemas = require("../../schemas/contacts-schemas");
+const authenticate = require("../../middlewares/authenticate");
 
 const contactAddValidate = validateBody(schemas.contactAddSchema);
 const contactUpdateValidate = validateBody(schemas.contactUpdateSchema);
 const contactUpdateFavoriteValidate = validateBody(
   schemas.contactUpdateFavoriteSchema
 );
+router.use(authenticate);
 
 router.get("/", contactsController.getAllContacts);
 
