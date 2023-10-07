@@ -37,8 +37,15 @@ const userUpdateSchema = Joi.object({
     }),
 });
 
+const userEmailSchema = Joi.object({
+  email: Joi.string().required().pattern(new RegExp(emailFieldRegEx)).messages({
+    "any.required": `missing required 'email' field`,
+  }),
+});
+
 module.exports = {
   userRegisterSchema,
   userLoginSchema,
   userUpdateSchema,
+  userEmailSchema,
 };
