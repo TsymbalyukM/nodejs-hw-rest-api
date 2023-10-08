@@ -3,6 +3,7 @@ const {
   userRegisterValidate,
   userLoginValidate,
   userUpdateSubscriptionValidate,
+  userEmailValidate,
 } = require("../../middlewares");
 const upload = require("../../middlewares/upload");
 
@@ -18,6 +19,10 @@ authRouter.post("/login", userLoginValidate, authControllers.login);
 authRouter.get("/current", authenticate, authControllers.getCurrent);
 
 authRouter.post("/logout", authenticate, authControllers.logout);
+
+authRouter.get("/verify/:verificationToken", authControllers.verify);
+
+authRouter.post("/verify", userEmailValidate, authControllers.resendVerify);
 
 authRouter.patch(
   "/",
